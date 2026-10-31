@@ -12,6 +12,12 @@ Keep each asset in the matching subdirectory and document its destination, namin
 
 Store reusable font files and generated font sources in `fonts/`.
 
+`fonts/am_font_16.c` is the Agent Monitor terminal's 16 px, 2-bit uncompressed
+font, generated with lv_font_conv 1.5.3 from
+[Noto Sans CJK SC Regular](https://github.com/notofonts/noto-cjk/tree/main/Sans/OTF/SimplifiedChinese).
+Its SIL OFL is retained at `fonts/OFL.txt`. Coverage, conversion and limits are
+documented in [the application guide](../docs/agent-monitor-terminal.md#chinese-font).
+
 - Use descriptive names that include the family, weight, size, and format when relevant.
 - Document the source, license, character range, conversion command, and expected destination.
 - Check Flash and internal-RAM impact before adding a font; the ESP32-C3 has no PSRAM.

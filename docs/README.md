@@ -56,6 +56,20 @@ it anything—from a pocket companion to something no one has imagined yet.
 > Derivative applications must design their own UI; the current demo test menu and
 > screens must not be reused. BSP APIs and non-UI logic remain reusable.
 
+## Current downstream application: Agent Monitor Terminal
+
+This personal fork includes a current `feature/agent-monitor-terminal` application for
+the ESP32-C3 AI Passport. It replaces the hardware-test entry point with a read-only,
+three-button terminal that receives bounded task, alert, quota and settings snapshots
+from the companion [Agent Monitor](https://github.com/lxxaisy/agent-monitor) desktop app
+over USB Serial/JTAG or encrypted BLE.
+
+The terminal keeps the original BSP boundary and resource limits, adds Chinese font
+coverage, and does not approve, cancel or execute agent work. Read the complete feature,
+protocol, resource and host-rendering notes in [`docs/agent-monitor-terminal.md`](agent-monitor-terminal.md).
+The upstream hardware-test baseline remains available through the `main` history and
+the original [FoloToy repository](https://github.com/FoloToy/ai-passport).
+
 ## Start development with one requirement
 
 1. Open the repository in your AI coding tool and have it read [`AGENTS.md`](../AGENTS.md).

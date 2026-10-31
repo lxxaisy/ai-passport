@@ -4,6 +4,13 @@ sdkconfig.old
 managed_components/
 .vscode/
 .idea/
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
 
 # Generated repository-local links; canonical skill sources live in skills/.
 /.agents/skills/passport-develop

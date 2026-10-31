@@ -11,6 +11,10 @@ usage() {
 run_static_checks() {
     local actionlint_bin
     local test_dir
+    local host_gc_flags=("-Wl,--gc-sections")
+    if [[ "$(uname -s)" == Darwin ]]; then
+        host_gc_flags=("-Wl,-dead_strip")
+    fi
 
     python3 tools/check_repo.py
 
@@ -61,10 +65,17 @@ run_static_checks() {
         tests/test_bsp_audio_recovery.c components/bsp/src/bsp_es8311_sleep_check.c \
         -o "${test_dir}/test_bsp_audio_recovery"
     "${test_dir}/test_bsp_audio_recovery"
+    "${CC:-cc}" -std=c11 -Wno-deprecated-declarations -Itests/vendor/cjson \
+        -c tests/vendor/cjson/cJSON.c -o "${test_dir}/cJSON.o"
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain -Itests/vendor/cjson \
+        tests/test_am_model.c main/am_model.c main/am_protocol.c "${test_dir}/cJSON.o" \
+        -lm -o "${test_dir}/test_am_model"
+    "${test_dir}/test_am_model" tests/fixtures/am_snapshot.json \
+        tests/fixtures/am_read_snapshot.json tests/fixtures/am_queued_event.json tests/fixtures/am_ui_snapshot.json
     for demo in audio low_power ble wifi; do
         "${CC:-cc}" -std=c11 -Wall -Wextra -Werror \
             -ffunction-sections -fdata-sections -Itests/demo_stubs -Imain \
-            "tests/test_demo_${demo}_runtime.c" -Wl,--gc-sections \
+            "tests/test_demo_${demo}_runtime.c" "${host_gc_flags[@]}" \
             -o "${test_dir}/test_demo_${demo}_runtime"
         "${test_dir}/test_demo_${demo}_runtime"
     done

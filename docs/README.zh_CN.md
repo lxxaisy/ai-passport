@@ -55,6 +55,19 @@
 > 二次开发必须重新设计 UI，禁止沿用当前 demo 测试菜单和页面；
 > BSP API 与非 UI 逻辑仍可复用。
 
+## 当前下游应用：Agent Monitor 随身终端
+
+本个人 fork 包含当前的 `feature/agent-monitor-terminal` 应用，目标为 ESP32-C3
+AI Passport。它用三键只读终端替换硬件测试入口，通过 USB Serial/JTAG 或加密 BLE
+接收配套 [Agent Monitor](https://github.com/lxxaisy/agent-monitor) 桌面端发送的
+有限任务、提醒、额度和设置快照。
+
+终端继续遵守原有 BSP 边界和资源限制，增加中文字体覆盖，不提供 Agent 审批、取消
+或执行命令。完整的功能、协议、资源和主机渲染说明见
+[`docs/agent-monitor-terminal.zh_CN.md`](agent-monitor-terminal.zh_CN.md)。上游硬件
+测试基线仍可从 `main` 历史和原始 [FoloToy 仓库](https://github.com/FoloToy/ai-passport)
+查看。
+
 ## 用一句需求开始开发
 
 1. 在 AI 编程工具中打开仓库，让它先阅读 [`AGENTS.md`](../AGENTS.md)。

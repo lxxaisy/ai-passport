@@ -1,16 +1,10 @@
 idf_component_register(
-    SRCS "main.c"
-         "demo_navigation.c"
-         "ui_pixel.c"
-         "ui_pixel_math.c"
-         "demo_display.c"
-         "demo_button.c"
-         "demo_audio.c"
-         "demo_battery.c"
-         "demo_radio.c"
-         "demo_wifi.c"
-         "demo_ble.c"
-         "demo_low_power.c"
+    SRCS "am_main.c"
+         "am_model.c"
+         "am_protocol.c"
+         "am_transport.c"
+         "am_view.c"
+         "../assets/fonts/am_font_16.c"
     INCLUDE_DIRS "."
-    REQUIRES bsp bt esp_event esp_hw_support esp_netif esp_timer esp_wifi nvs_flash
+    REQUIRES bsp bt esp_timer esp_system esp_app_format json nvs_flash esp_driver_usb_serial_jtag
 )

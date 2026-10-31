@@ -10,6 +10,12 @@
 
 可复用的字库文件与生成的字库源码放在 `fonts/`。
 
+`fonts/am_font_16.c` 是 Agent Monitor 终端的 16px、2bit、未压缩字库，
+使用 lv_font_conv 1.5.3 从
+[Noto Sans CJK SC Regular](https://github.com/notofonts/noto-cjk/tree/main/Sans/OTF/SimplifiedChinese)
+生成。SIL OFL 保存在 `fonts/OFL.txt`；覆盖范围、转换命令和边界见
+[应用说明](../docs/agent-monitor-terminal.zh_CN.md#中文字体)。
+
 - 命名要能反映字族、字重、字级与格式。
 - 记录来源、许可、字符范围、转换命令与目标放置路径。
 - 添加字库前评估 Flash 与内部 RAM 影响；ESP32-C3 无 PSRAM。
